@@ -60,11 +60,28 @@
         min-width: 250px;
     }
 
-    .shop-info-box {
-        line-height: 1.6;
+    /* ปลดล็อกความกว้างของช่องกรอกใน shop-info-box ให้ขยายเต็มพื้นที่ */
+    .shop-info-box .inline-input,
+    .shop-info-box .inline-textarea {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    /* จัดระเบียบแถวข้อมูลภายใน shop-info-box ให้ Label กับ Input อยู่ด้วยกันอย่างเป็นระเบียบ */
+    .shop-info-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+    .shop-info-row.align-top {
+        align-items: flex-start; /* สำหรับช่องที่อยู่ที่เป็น textarea */
+    }
+    .shop-info-label {
+        min-width: 160px;
+        flex-shrink: 0;
+    }
+    .shop-info-input {
         flex-grow: 1;
-        font-size: 14px;
-        width: 100%;
     }
     
     .title-box { 
@@ -660,7 +677,17 @@
             background: linear-gradient(135deg, #9333ea, #c084fc) !important; 
             color: #ffffff !important; 
         }
+		
+		body {
+    /* กำหนดฟอนต์ภาษาไทยที่รองรับสระไม่ให้ลอย เช่น Sarabun, Inter หรือ Cordia เป็นต้น */
+    font-family: 'Sarabun', 'Tahoma', sans-serif !important;
+    
+    /* เปิดใช้งานการจัดการฟอนต์ภาษาไทยแบบสมบูรณ์ (Ligatures & Positioning) */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
     }
+	
 </style>
 </head>
 <body>
