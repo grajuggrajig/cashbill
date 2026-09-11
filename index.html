@@ -805,7 +805,7 @@
                             <button type="button" class="search-product-btn no-print" onclick="openProductSelector(this)" title="ค้นหาสินค้า"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </td>
-                    <td style="text-align: center;"><input type="text" class="qty" value="0" inputmode="decimal" onfocus="if(this.value==='0')this.value='';" onblur="if(this.value==='')this.value='0';" oninput="formatNumberInput(this); calculate();"></td>
+                    <td style="text-align: center;"><input type="text" class="qty" value="1" inputmode="decimal" onfocus="if(this.value==='1')this.value='';" onblur="if(this.value==='')this.value='1';" oninput="formatNumberInput(this); calculate();"></td>
                     <td style="text-align: center;"><input type="text" class="unit-input" placeholder="ชิ้น/อัน"></td>
                     <td style="text-align: center;"><input type="text" class="price" value="0" inputmode="decimal" onfocus="if(this.value==='0')this.value='';" onblur="if(this.value==='')this.value='0';" oninput="formatNumberInput(this); calculate();"></td>
                     <td class="amount" style="text-align: right; padding-right: 12px;">0.00</td>
@@ -1491,20 +1491,21 @@
     }
 
     function selectProductToRow(product) {
-        if (activeRowForSelection) {
-            let descArea = activeRowForSelection.querySelector('.item-desc');
-            descArea.value = product.desc;
-            autoGrow(descArea);
-            if (product.unit) activeRowForSelection.querySelector('.unit-input').value = product.unit;
-            activeRowForSelection.querySelector('.price').value = product.price;
-            
-            let qtyInput = activeRowForSelection.querySelector('.qty');
-            if (qtyInput.value === '0' || qtyInput.value === '') qtyInput.value = '1';
-            
-            calculate();
-        }
-        closeModal('productSelectorModal');
+    if (activeRowForSelection) {
+        let descArea = activeRowForSelection.querySelector('.item-desc');
+        descArea.value = product.desc;
+        autoGrow(descArea);
+        if (product.unit) activeRowForSelection.querySelector('.unit-input').value = product.unit;
+        activeRowForSelection.querySelector('.price').value = product.price;
+        
+        // กำหนดค่าเริ่มต้นจำนวนเป็น 1 เสมอเมื่อเลือกสินค้าใหม่
+        let qtyInput = activeRowForSelection.querySelector('.qty');
+        qtyInput.value = '1';
+        
+        calculate();
     }
+    closeModal('productSelectorModal');
+}
 
     function saveCurrentData() { executeSave(false); }
     function saveAsNewData() { executeSave(true); }
