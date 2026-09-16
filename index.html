@@ -831,10 +831,20 @@
             font-size: 13.5px !important;
         }
 		/* กำหนดสีข้อความอินพุต */
-    #shopTax, #custTax {
-        color: #7c3aed !important; /* เปลี่ยนเป็นสีที่ต้องการ */
-        font-weight: 600 !important;
+    @media print {
+    /* บังคับสีตัวอักษรข้อมูลบริษัททั้งหมดตอนพิมพ์ */
+    .shop-info-box,
+    .shop-info-box strong,
+    .shop-info-box input,
+    .shop-info-box textarea,
+    #shopName,
+    #shopAddress,
+    #shopTax {
+        color: #7c3aed !important; /* หรือใส่ #1e293b หากต้องการสีดำ/เทาเข้มคมชัด */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
+}
 
     /* หากต้องการให้เห็นเส้นขอบ/เส้นใต้ช่องกรอกตอนพิมพ์ด้วย */
     #shopTax, #custTax {
